@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.mappers.memberMapper">
+
+<!-- 회원 가입 -->
+<insert id="signup" >
+ 	insert into tbl_member
+ 	( userId,
+ 	  userPass,
+ 	  userName,
+ 	  userPhone,
+ 	  e_mail,
+ 	  join_date,
+ 	  AuthKey
+ 	  )values
+ 	  ( 	#{userId},
+ 	  	 	#{userPass},
+ 	  	 	#{userName},
+ 	  	 	#{userPhone},
+ 	  	 	#{e_mail},
+ 	  	 	#{join_date},
+ 	  	 	#{AuthKey}
+ 	  );
+	  
+</insert>
+
+<!-- 로그인 -->
+<select id="signin" resultType="com.company.domain.MemberVO">
+ select 
+ 	userId,userName,userPass,userPhone,
+ 	userAddr1,userAddr2,userAddr3,regiDate,verify
+ 	 e_mail, join_date
+ 	from 
+ 	tbl_member
+ 	where userId=#{userId}
+</select>
+
+
+
+
+<update id="updateAuthKey">
+	update tbl_member
+	
+		set  
+		   AuthKey = #{AuthKey}
+		where
+			e_mail = #{e_mail}
+		and user_id =#{user_id}	
+			
+		where 
+
+</update>
+
+
+
+</mapper>
